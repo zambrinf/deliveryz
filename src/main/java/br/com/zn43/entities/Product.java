@@ -11,7 +11,6 @@ import java.util.Objects;
 @Entity
 @Table(name = "tb_product")
 @Getter
-@Setter
 @AllArgsConstructor
 @NoArgsConstructor
 public class Product {

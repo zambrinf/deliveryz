@@ -3,13 +3,10 @@ package br.com.zn43.controllers;
 import br.com.zn43.dto.OrderDTO;
 import br.com.zn43.services.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import java.net.URI;
 import java.util.List;
 
@@ -35,6 +32,12 @@ public class OrderController {
                 .buildAndExpand(insertedOrder.getId())
                 .toUri();
         return ResponseEntity.created(uri).body(insertedOrder);
+    }
+
+    @PutMapping("/{id}/delivered")
+    @ResponseBody
+    public OrderDTO setDelivered(@PathVariable Long id) {
+        return orderService.setDelivered(id);
     }
 
 }

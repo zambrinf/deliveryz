@@ -51,8 +51,16 @@ public class OrderService {
                 .map(productDTO -> productRepository.getOne(productDTO.getId()))
                 .collect(Collectors.toSet());
         Order order = new Order(null, orderDTO.getAddress(), orderDTO.getLatitude(), orderDTO.getLongitude(), Instant.now(), PENDING, products);
-        Order savedOrder = orderRepository.save(order);
-        return new OrderDTO(savedOrder);
+        order = orderRepository.save(order);
+        return new OrderDTO(order);
+    }
+
+    @Transactional
+    public OrderDTO setDelivered(Long id) {
+        Order order = orderRepository.getOne(id);
+        order.setDelivered();
+        order = orderRepository.save(order);
+        return new OrderDTO(order);
     }
 
 }

@@ -42,6 +42,10 @@ public class Order {
         this.products = products;
     }
 
+    public void setDelivered() {
+        status = OrderStatus.DELIVERED;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
