@@ -19,11 +19,11 @@ public class ProductDTO {
     private String imageUri;
 
     public ProductDTO(Product product) {
-        this.id = product.getId();
-        this.name = product.getName();
-        this.price = product.getPrice();
-        this.description = product.getDescription();
-        this.imageUri = product.getImageUri();
+        id = product.getId();
+        name = product.getName();
+        price = product.getPrice();
+        description = product.getDescription();
+        imageUri = product.getImageUri();
     }
 
 }

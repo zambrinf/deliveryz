@@ -26,7 +26,6 @@ public class Order {
     private Instant moment;
     @Enumerated
     private OrderStatus status;
-    private Double total;
 
     @ManyToMany
     @JoinTable(name = "tb_order_product",
@@ -34,14 +33,13 @@ public class Order {
             inverseJoinColumns = @JoinColumn(name = "product_id"))
     private Set<Product> products = new HashSet<>();
 
-    public Order(Long id, String address, Double latitute, Double longitude, Instant moment, OrderStatus status, Double total) {
+    public Order(Long id, String address, Double latitute, Double longitude, Instant moment, OrderStatus status) {
         this.id = id;
         this.address = address;
         this.latitude = latitute;
         this.longitude = longitude;
         this.moment = moment;
         this.status = status;
-        this.total = total;
     }
 
     @Override
