@@ -1,6 +1,7 @@
 package br.com.zn43.entities;
 
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
@@ -13,6 +14,7 @@ import java.util.Set;
 @Table(name = "tb_order")
 @Getter
 @Setter
+@NoArgsConstructor
 public class Order {
 
     @Id
@@ -31,10 +33,6 @@ public class Order {
             joinColumns = @JoinColumn(name = "order_id"),
             inverseJoinColumns = @JoinColumn(name = "product_id"))
     private Set<Product> products = new HashSet<>();
-
-    public Order() {
-
-    }
 
     public Order(Long id, String address, Double latitute, Double longitude, Instant moment, OrderStatus status, Double total) {
         this.id = id;
