@@ -13,7 +13,6 @@ import java.util.Set;
 @Entity
 @Table(name = "tb_order")
 @Getter
-@Setter
 @NoArgsConstructor
 public class Order {
 
@@ -31,15 +30,16 @@ public class Order {
     @JoinTable(name = "tb_order_product",
             joinColumns = @JoinColumn(name = "order_id"),
             inverseJoinColumns = @JoinColumn(name = "product_id"))
-    private Set<Product> products = new HashSet<>();
+    private Set<Product> products;
 
-    public Order(Long id, String address, Double latitute, Double longitude, Instant moment, OrderStatus status) {
+    public Order(Long id, String address, Double latitute, Double longitude, Instant moment, OrderStatus status, Set<Product> products) {
         this.id = id;
         this.address = address;
         this.latitude = latitute;
         this.longitude = longitude;
         this.moment = moment;
         this.status = status;
+        this.products = products;
     }
 
     @Override

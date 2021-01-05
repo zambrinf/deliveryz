@@ -8,7 +8,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.Collection;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Service
 public class ProductService {
@@ -20,6 +23,12 @@ public class ProductService {
     public List<ProductDTO> findAll() {
         List<Product> list = productRepository.findAllByOrderByNameAsc();
         return ProductUtil.toProductDTO(list);
+    }
+
+    @Transactional(readOnly = true)
+    public Set<Product> findAllFromDTO(Collection<ProductDTO> productsDTOS) {
+        List<Long> productsIds = ProductUtil.toIdsFromProductDTO(productsDTOS);
+        return new HashSet<>(productRepository.findAllById(productsIds));
     }
 
 }
